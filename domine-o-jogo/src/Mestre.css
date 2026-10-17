@@ -1,0 +1,158 @@
+
+.mestre {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 420px;
+  max-height: 650px;
+  overflow: hidden;
+  color: #e8f5eb;
+  background: #0b100d;
+  border: 1px solid #263b2c;
+  border-radius: 14px;
+  font-family: Inter, sans-serif;
+}
+
+.mestre-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  background: #101a13;
+  border-bottom: 1px solid #263b2c;
+}
+
+.mestre-avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #071009;
+  background: #5dff8b;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.mestre-header h2 {
+  margin: 0;
+  color: #5dff8b;
+  letter-spacing: 3px;
+}
+
+.mestre-header p {
+  margin: 5px 0 0;
+  color: #8a9b8e;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.mestre-status {
+  margin-left: auto;
+  color: #5dff8b;
+  font-size: 10px;
+}
+
+.mestre-mensagens {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 220px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.mestre-balao {
+  align-self: flex-start;
+  max-width: 85%;
+  padding: 12px 15px;
+  background: #142219;
+  border: 1px solid #294332;
+  border-radius: 4px 12px 12px 12px;
+  overflow-wrap: anywhere;
+}
+
+.mestre-balao.jogador {
+  align-self: flex-end;
+  background: #1b2d20;
+  border-color: #42734e;
+  border-radius: 12px 4px 12px 12px;
+}
+
+.mestre-balao small {
+  color: #5dff8b;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.mestre-balao p {
+  margin: 7px 0 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.mestre-digitando {
+  color: #91a698;
+  font-size: 12px;
+}
+
+.mestre-form {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border-top: 1px solid #263b2c;
+}
+
+.mestre-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px;
+  color: #e8f5eb;
+  background: #070a08;
+  border: 1px solid #304735;
+  border-radius: 8px;
+  outline: none;
+}
+
+.mestre-form input:focus {
+  border-color: #5dff8b;
+}
+
+.mestre-form button {
+  padding: 0 16px;
+  color: #071009;
+  background: #5dff8b;
+  border: 0;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.mestre-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .mestre-header {
+    padding: 13px;
+  }
+
+  .mestre-status {
+    font-size: 9px;
+  }
+
+  .mestre-mensagens {
+    padding: 12px;
+  }
+
+  .mestre-form {
+    padding: 10px;
+  }
+
+  .mestre-form button {
+    padding: 0 10px;
+    font-size: 11px;
+  }
+}
