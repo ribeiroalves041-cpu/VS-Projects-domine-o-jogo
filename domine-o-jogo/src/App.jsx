@@ -11,6 +11,7 @@ const menu = [
   { id: 'rotina', icon: '◷', label: 'Rotina' },
   { id: 'financas', icon: '◇', label: 'Finanças' },
   { id: 'treinos', icon: '△', label: 'Treinos' },
+  {id: 'recompensas',label: 'Recompensas',icon: '🎁',},
   { id: 'mestre', icon: '✧', label: 'MESTRE' },
 ]
 
@@ -21,6 +22,37 @@ const initialData = {
   transactions: [],
   workouts: [],
 }
+
+const REWARDS = [
+  {
+    id: 'break',
+    title: 'Pausa merecida',
+    description: '30 minutos para relaxar.',
+    cost: 30,
+    icon: '☕',
+  },
+  {
+    id: 'movie',
+    title: 'Noite de filme',
+    description: 'Uma sessão de filme ou série.',
+    cost: 60,
+    icon: '🎬',
+  },
+  {
+    id: 'hobby',
+    title: 'Tempo para seu hobby',
+    description: 'Uma hora para fazer algo que você gosta.',
+    cost: 90,
+    icon: '🎮',
+  },
+  {
+    id: 'special',
+    title: 'Recompensa especial',
+    description: 'Escolha um prêmio pessoal.',
+    cost: 150,
+    icon: '🎁',
+  },
+]
 
 function loadData() {
   try {
@@ -47,6 +79,35 @@ function formatMoney(value) {
 }
 
 function App() {
+  function buyReward(reward) {
+  if (data.coins < reward.cost) {
+    setNotice('Moedas insuficientes! Continue cumprindo missões.')
+    return
+  }
+
+  const confirmed = window.confirm(
+    `Comprar "${reward.title}" por ${reward.cost} moedas?`
+  )
+
+  if (!confirmed) return
+
+  updateData((current) => ({
+    ...current,
+    coins: current.coins - reward.cost,
+    rewardPurchases: [
+      {
+        id: crypto.randomUUID(),
+        title: reward.title,
+        cost: reward.cost,
+        date: new Date().toLocaleDateString('pt-BR'),
+      },
+      ...(current.rewardPurchases || []),
+    ],
+  }))
+
+  setNotice(`Compra realizada: ${reward.title}!`)
+}
+
   const [data, setData] = useState(loadData)
   const [page, setPage] = useState('dashboard')
   const [notice, setNotice] = useState('')
@@ -254,6 +315,69 @@ function App() {
         {page === 'treinos' && (
           <><Workouts workouts={data.workouts} onAdd={addWorkout} /><div className="page-body"></div></>
       )}  
+
+      {page === 'recompensas' && (
+  <section className="page-body">
+    <div className="section-heading">
+      <div>
+        <span className="eyebrow">MERCADO DO JOGADOR</span>
+        <h2>Loja de recompensas</h2>
+        <p>Troque suas moedas pelas recompensas que conquistou.</p>
+      </div>
+    </div>
+
+    <div className="reward-wallet panel">
+      <span className="rpg-icon">◈</span>
+      <div>
+        <span className="eyebrow">SEU SALDO</span>
+        <h2>{data.coins || 0} moedas</h2>
+      </div>
+    </div>
+
+    <div className="reward-grid">
+      {REWARDS.map((reward) => {
+        const canBuy = (data.coins || 0) >= reward.cost
+
+        return (
+          <article className="reward-card" key={reward.id}>
+            <div className="reward-icon">{reward.icon}</div>
+
+            <h3>{reward.title}</h3>
+            <p>{reward.description}</p>
+
+            <strong className="reward-cost">
+              ◈ {reward.cost} moedas
+            </strong>
+
+            <button
+              className="primary-button"
+              disabled={!canBuy}
+              onClick={() => buyReward(reward)}
+            >
+              {canBuy ? 'Comprar recompensa' : 'Moedas insuficientes'}
+            </button>
+          </article>
+        )
+      })}
+    </div>
+
+    <div className="panel">
+      <h2>Histórico de compras</h2>
+
+      {(data.rewardPurchases || []).length === 0 ? (
+        <p>Você ainda não comprou nenhuma recompensa.</p>
+      ) : (
+        (data.rewardPurchases || []).map((purchase) => (
+          <div className="reward-history-row" key={purchase.id}>
+            <span>{purchase.title}</span>
+            <span>−{purchase.cost} moedas</span>
+            <small>{purchase.date}</small>
+          </div>
+        ))
+      )}
+    </div>
+  </section>
+)}
 
       {page === 'mestre' && (
   <div className="page-body">

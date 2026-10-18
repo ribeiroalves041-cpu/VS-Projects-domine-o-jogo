@@ -340,3 +340,74 @@ select { color-scheme: dark; }
   .task-row { gap: 8px; }
   .task-xp { font-size: 9px; }
 }
+
+/* LOJA DE RECOMPENSAS */
+
+.reward-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.reward-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid #294532;
+  border-radius: 10px;
+  background: #0a100c;
+}
+
+.reward-card h3,
+.reward-card p {
+  margin: 0;
+}
+
+.reward-card p {
+  color: #9ba99f;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.reward-icon {
+  font-size: 32px;
+}
+
+.reward-cost {
+  color: var(--green, #72f59a);
+  font-size: 14px;
+}
+
+.reward-card .primary-button {
+  margin-top: auto;
+}
+
+.reward-card button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.reward-history-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #243027;
+}
+
+.reward-history-row small {
+  color: #9ba99f;
+}
+
+@media (max-width: 600px) {
+  .reward-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reward-card {
+    padding: 16px;
+  }
+}
