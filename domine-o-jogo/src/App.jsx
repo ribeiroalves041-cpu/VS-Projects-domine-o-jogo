@@ -387,7 +387,12 @@ function App() {
       <p>Defina seus objetivos. Planeje suas missões. Evolua.</p>
     </section>
 
-    <Mestre />
+    <Mestre
+  tasks={data.tasks}
+  onCreateMission={addTask}
+  player={data.profile}
+  xp={data.xp}
+/>
   </div>
 )}
 
