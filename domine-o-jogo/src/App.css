@@ -411,3 +411,20 @@ select { color-scheme: dark; }
     padding: 16px;
   }
 }
+
+
+.botao-excluir-missao {
+  background: transparent;
+  color: #ff4d6d;
+  border: 1px solid #ff4d6d;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.botao-excluir-missao:hover {
+  background: #ff4d6d;
+  color: #fff;
+  box-shadow: 0 0 12px #ff4d6d88;
+}
