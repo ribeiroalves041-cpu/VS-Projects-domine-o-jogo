@@ -428,3 +428,292 @@ select { color-scheme: dark; }
   color: #fff;
   box-shadow: 0 0 12px #ff4d6d88;
 }
+
+
+/* ==========================================
+   MOBILE RESPONSIVO — DOMINE O JOGO
+   ========================================== */
+
+/* Evita que elementos criem rolagem horizontal */
+html {
+  width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  width: 100%;
+  overflow-x: clip;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app-shell,
+.main-content,
+.page-body {
+  min-width: 0;
+}
+
+/* Tablets e celulares */
+@media (max-width: 700px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    padding: 10px 12px;
+    gap: 10px;
+    background: #090d0a;
+  }
+
+  .brand {
+    font-size: 14px;
+  }
+
+  /* Libera espaço para o conteúdo */
+  .player-mini {
+    display: none;
+  }
+
+  .nav-menu {
+    display: flex;
+    width: 100%;
+    gap: 7px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 0 7px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-item {
+    flex: 0 0 auto;
+    min-height: 42px;
+    white-space: nowrap;
+    touch-action: manipulation;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .topbar h1 {
+    font-size: clamp(18px, 5vw, 23px);
+    overflow-wrap: anywhere;
+  }
+
+  .topbar-player {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .page-body {
+    width: 100%;
+    padding: 20px 14px 30px;
+  }
+
+  .welcome-row {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .welcome-row > div:first-child {
+    min-width: 0;
+  }
+
+  .welcome-row h2,
+  .page-intro h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .welcome-row p:not(.eyebrow),
+  .page-intro p:not(.eyebrow) {
+    line-height: 1.65;
+  }
+
+  .stats-grid,
+  .finance-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel {
+    min-width: 0;
+    padding: 15px;
+    overflow-wrap: anywhere;
+  }
+
+  .panel-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .task-row {
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 13px 0;
+  }
+
+  .task-info {
+    flex: 1 1 40%;
+  }
+
+  .task-info strong {
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+  }
+
+  .task-xp {
+    font-size: 10px;
+  }
+
+  .task-check,
+  .botao-excluir-missao {
+    flex-shrink: 0;
+    min-width: 38px;
+    min-height: 38px;
+  }
+
+  .complete-button,
+  .primary-button,
+  .secondary-button,
+  .text-button {
+    min-height: 40px;
+    touch-action: manipulation;
+  }
+
+  .inline-form,
+  .transaction-form {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .inline-form input,
+  .transaction-form input,
+  .transaction-form select,
+  .registration-form input,
+  .registration-form select {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .transaction-form label {
+    width: 100%;
+  }
+
+  .reward-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .reward-card {
+    min-width: 0;
+  }
+
+  .main-footer {
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .registration-screen {
+    padding: 25px 14px;
+  }
+
+  .registration-brand {
+    margin-bottom: 30px;
+  }
+
+  .registration-form {
+    padding: 18px;
+  }
+}
+
+/* Celulares estreitos */
+@media (max-width: 400px) {
+  .page-body {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .topbar {
+    padding: 14px 12px;
+  }
+
+  .welcome-row {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .welcome-row h2 {
+    font-size: 22px;
+    letter-spacing: -0.7px;
+  }
+
+  .level-badge {
+    min-width: 58px;
+    padding: 9px 7px;
+  }
+
+  .level-badge strong {
+    font-size: 25px;
+  }
+
+  .stat-card {
+    padding: 12px 10px;
+  }
+
+  .stat-top {
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .panel-heading {
+    flex-wrap: wrap;
+  }
+
+  .task-row {
+    gap: 7px;
+  }
+
+  .task-info {
+    flex-basis: calc(100% - 100px);
+  }
+
+  .task-xp {
+    white-space: normal;
+  }
+
+  .reward-card {
+    padding: 14px;
+  }
+}
+
+/* Respeita usuários que preferem menos animações */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
