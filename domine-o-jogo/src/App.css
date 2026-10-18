@@ -717,3 +717,59 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* CORREÇÃO DOS CARDS NO CELULAR */
+@media (max-width: 700px) {
+  .stats-grid,
+  .finance-stats {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .stat-card {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    padding: 14px 10px;
+  }
+
+  .stat-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 5px;
+    font-size: 9px;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .stat-icon {
+    flex-shrink: 0;
+  }
+
+  .stat-value {
+    font-size: clamp(16px, 4.5vw, 22px);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .stat-card small {
+    display: block;
+    font-size: 11px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Telas muito estreitas */
+@media (max-width: 360px) {
+  .stats-grid,
+  .finance-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
